@@ -1,0 +1,28 @@
+
+<h1>Listing posts</h1>
+<%= link_to 'New post', new_post_path %>
+<table id="posts">
+  <thead>
+   <tr>
+     <th>Title</th>
+     <th>Text</th>
+     <th></th>
+     <th></th>
+   </tr>
+ </thead>
+ <tbody>
+ <% @posts.each do |post| %>
+   <tr>
+     <td><%= post.title %></td>
+     <td><%= post.text %></td>
+     
+     <td><%= link_to 'Show', post_path(post) %></td>
+     <td><%= link_to 'Edit', edit_post_path(post) %></td>
+     <td><%= link_to 'Destroy', post_path(post),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   </tr>
+  <% end %>
+</tbody>
+</table>
+
+<%= will_paginate @posts %>
